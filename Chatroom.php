@@ -40,7 +40,7 @@
                         <p> <?= $chatroom->desc ?> </p>
                     </div>
                     <div class="row">
-                        <button type="button" class="col-2 btn btn-success">Connect to chat</button>
+                        <a href="./Chatroom.php?<?= $chatroom->id ?>" class="col-2 btn btn-success">Connect to chat</a>
                     </div>
                 </div>
             </div>
