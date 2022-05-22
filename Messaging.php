@@ -41,13 +41,17 @@ $messages = $mysqli->query($sql);
 
 <!--Displaying messages-->
 <div class="container">
-    
     <h2 class="row"> Messages: </h2>
     <?php foreach ($messages as $message) : ?>
-        <div class="row">
-            <!--<img class="col-2" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="blank user">-->
-            <!--needs to be in php quotes<'<img src="data:image/jpeg;base64,'.base64_encode($message['image']).'"/>';-->
-            <div class="container-fluid">
+        <div class="row border border-secondary my-1 rounded">
+            <!--check if image is null, show image else show placeholder-->
+            <?php if ($message['user_image'] != null) {?>
+            <img style="max-width: 10%" src="data:image/jpeg;base64,<?= base64_encode($message['user_image'])?>"  />
+            <?php } else { ?>
+            <img style="max-width: 10%" class="col-2" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="blank user">
+            <?php } ?>
+
+            <div class="col-10">
                 <div class="row">
                     <h3> <?= $message['user_name'] ?> </h3>
                 </div>

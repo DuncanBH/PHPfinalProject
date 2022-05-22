@@ -45,10 +45,12 @@
         <h1>Log in</h1>
 
         <form action="login.php" method="post">
-            Username: <input type="text" name="userName"> <?php echo (!empty($username_error)) ? $username_error : '';?> <br>
-            Password: <input type="text" name="userPass"> <?php echo (!empty($password_error)) ? $password_error : '';?> <br>
+            Username: <br> 
+            <input type="text" name="userName"  class="form-control"> <?php echo (!empty($username_error)) ? $username_error : '';?> <br>
+            Password: <br> 
+            <input type="text" name="userPass"  class="form-control"> <?php echo (!empty($password_error)) ? $password_error : '';?> <br>
             
-            <input type="submit">
+            <input type="submit"  class="form-control">
         </form>
     </div>
 </body>

@@ -28,11 +28,12 @@
             $exists = $result->fetch_assoc();
             $teststmt->close();
             if ($exists == null) {
-                $sql = "INSERT INTO chatroomdb.users (user_name, user_password) VALUES (?, ?)";
+                $sql = "INSERT INTO chatroomdb.users (user_name, user_password, user_image) VALUES (?, ?, ?)";
                 $stmt = $mysqli->prepare($sql);
-                $stmt->bind_param("ss", $param_username, $param_password);
+                $stmt->bind_param("sss", $param_username, $param_password, $param_image);
                 $param_username = $username;
                 $param_password = hash('sha256', $password);
+                $param_image = file_get_contents($_FILES['userImg']['tmp_name']);
 
                 $stmt->execute();
                 $stmt->close();
@@ -51,11 +52,16 @@
     <div class="container">
         <h1>Sign up</h1>
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            Username: <input type="text" name="userName"> <?php echo (!empty($username_error)) ? $username_error : '';?> <br>
-            Password: <input type="text" name="userPass"> <?php echo (!empty($password_error)) ? $password_error : '';?> <br>
-            Confirm Password: <input type="text" name="userPass2"><br>
-            <input type="submit">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+            Username: <br>
+            <input type="text" name="userName"  class="form-control"> <?php echo (!empty($username_error)) ? $username_error : '';?> <br>
+            Password: <br>
+            <input type="text" name="userPass"  class="form-control"> <?php echo (!empty($password_error)) ? $password_error : '';?> <br>
+            Confirm Password: <br>
+            <input type="text" name="userPass2"  class="form-control"><br>
+            Profile picture: <br>
+            <input type="file" name="userImg"  class="form-control"><br>
+            <input type="submit"  class="form-control">
         </form>
     </div>
 </body>

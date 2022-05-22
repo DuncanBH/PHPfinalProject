@@ -13,7 +13,9 @@
 
     //Check if signed in
     if (isset($_SESSION["username"])) {
-        ?> <div class="col-3 my-auto w-auto">
+        ?>
+        <a href="./NewChat.php" class="btn btn-success col-2 m-1 my-auto w-auto">Create new chatroom?</a>
+        <div class="col-3 my-auto w-auto">
             Welcome back, <?= $_SESSION["username"]?> <br>
             <a href="./Home.php?logout=true">Sign out?</a>
         </div> 

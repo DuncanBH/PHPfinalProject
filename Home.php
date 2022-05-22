@@ -25,25 +25,30 @@
         $chatrooms = [];
 
         foreach($reqReply as $reply) {
-            $chatroom = new ChatroomData($reply["chatroom_id"], $reply["chatroom_name"], $reply["chatroom_description"], null);
+            $chatroom = new ChatroomData($reply["chatroom_id"], $reply["chatroom_name"], $reply["chatroom_description"], $reply["chatroom_image"]);
             array_push($chatrooms, $chatroom);
         }
     ?>
     <div class="container"> 
         <div class="row">
             <h1 class="text-center">Welcome to the home page</h1>
-            </div>
+        </div>
         <div class="row">
-            <h2 class="text-center fw-light">Available chatrooms:
-            </h2>
+            <h2 class="text-center fw-light">Available chatrooms:</h2>
         </div>
     </div>
 
     <div class="container">
         <?php foreach ($chatrooms as $chatroom ) : ?>
-            <div class="row my-2">
-                <img class="col-2" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="blank user">
-                <div class="col-10 container-fluid"> 
+            <div class="row my-2 border border-secondary rounded p-2">
+                <!--check if image is null, show image else show placeholder-->
+                <?php if ($chatroom->img != null) {?>
+                <img class="img-fluid col-2" src="data:image/jpeg;base64,<?= base64_encode($chatroom->img)?>"  />
+                <?php } else { ?>
+                <img class="img-fluid col-2" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="blank user">
+                <?php } ?>
+
+                <div class="col-10"> 
                     <div class="row">
                         <h3> <?= $chatroom->name ?> </h3>
                     </div>
