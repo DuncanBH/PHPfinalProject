@@ -4,10 +4,22 @@
 <div class="row ms-5 mt-2">
     <a href="./Home.php" class="btn btn-primary col-1 m-1 my-auto w-auto">Home</a>
     
-    <?php 
-    if (isset($_SESSION["username"])) {
-        ?> <div class="col-3 my-auto w-auto">Welcome back, <?= $_SESSION["username"]?> </div> <?php
+    <?php //Check if signing out
+    if (isset($_GET["logout"])) {
+        session_destroy();
+        header("Location: ./Home.php");
+        die();
     }
+
+    //Check if signed in
+    if (isset($_SESSION["username"])) {
+        ?> <div class="col-3 my-auto w-auto">
+            Welcome back, <?= $_SESSION["username"]?> <br>
+            <a href="./Home.php?logout=true">Sign out?</a>
+        </div> 
+        <?php
+    }
+    //Else show log-in/sign-up
     else {?>
         <a href="./Login.php" class="btn btn-primary col-1 m-1 my-auto w-auto">Log in</a>
         <a href="./Signup.php" class="btn btn-primary col-1 m-1 my-auto w-auto">Sign up</a>
