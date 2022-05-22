@@ -1,6 +1,8 @@
 <html>
 <body>
-    <?php require 'header.php'?>
+    <?php require 'header.php'; 
+    require_once "config.php";
+    ?>
     <h1>Welcome to the home page</h1>
 
     <?php
@@ -18,18 +20,20 @@
                 $this->img = $img;
             }
         }
+        $sql = "SELECT * FROM chatroomdb.chatrooms";
+        $reqReply = $mysqli->query($sql);
 
-        $values = array(
-            new ChatroomData(0, "Very cool chatroom", "Cool chat", "no img"),
-            new ChatroomData(1, "Chat room for weirdos", "Less cool chat", "no img"),
-            new ChatroomData(2, "The Screaming Room", "AAAAAAAAAAAAAAAA", "no img"),
-            new ChatroomData(3, "FR chat", "Francais seulement", "no img")
-        );
+        $chatrooms = [];
+
+        foreach($reqReply as $reply) {
+            $chatroom = new ChatroomData($reply["chatroom_id"], $reply["chatroom_name"], $reply["chatroom_description"], null);
+            array_push($chatrooms, $chatroom);
+        }
     ?>
 
     Available chatrooms:
     <div class="container">
-        <?php foreach ($values as $chatroom ) : ?>
+        <?php foreach ($chatrooms as $chatroom ) : ?>
             <div class="row">
                 <img class="col-2" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="blank user">
                 <div class="col-10 container-fluid"> 
@@ -40,7 +44,7 @@
                         <p> <?= $chatroom->desc ?> </p>
                     </div>
                     <div class="row">
-                        <button type="button" class="col-2 btn btn-success">Connect to chat</button>
+                        <a href="./Chatroom.php?roomId=<?= $chatroom->id ?>" class="col-2 btn btn-success">Connect to chat</a>
                     </div>
                 </div>
             </div>
