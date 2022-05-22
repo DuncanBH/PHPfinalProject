@@ -1,7 +1,7 @@
 <html>
 <body>
     <?php require 'header.php'; 
-    require_once "config.php";
+        require_once "config.php";
     ?>
 
     <?php
@@ -51,7 +51,7 @@
                         <p> <?= $chatroom->desc ?> </p>
                     </div>
                     <div class="row">
-                        <a href="./Chatroom.php?roomId=<?= $chatroom->id ?>" class="col-2 btn btn-success">Connect to chat</a>
+                        <a href="./Chatroom.php?roomId=<?= $chatroom->id ?>" class="col-2 btn btn-success w-auto">Connect to chat</a>
                     </div>
                 </div>
             </div>

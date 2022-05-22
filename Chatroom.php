@@ -1,7 +1,7 @@
 <html>
 <body>
     <?php require 'header.php'; 
-    require_once "config.php";
+        require_once "config.php";
     ?>
 
     <?php

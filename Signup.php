@@ -1,8 +1,9 @@
 <html>
-
 <body>
+    <?php require 'header.php';
+        require_once "config.php";
+    ?>
     <?php
-    require_once "config.php";
     $username_error = null;
     $password_error = null;
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -10,12 +11,12 @@
         $password = $_POST["userPass"];
         $password2 = $_POST["userPass2"];
         if (empty($username)) {
-            $username_error = "Username is Empty<br>";
+            $username_error = "Username is Empty";
         }
         if (empty($password)) {
-            $password_error = "Password is Empty<br>";
+            $password_error = "Password is Empty";
         } elseif (($password) != ($password2)) {
-            $password_error = "Password does not match<br>";
+            $password_error = "Password does not match";
         }
         if (empty($username_error) && empty($password_error)) {
             $testsql = "SELECT * FROM chatroomdb.users WHERE user_name = ?";
@@ -36,26 +37,23 @@
                 $stmt->execute();
                 $stmt->close();
 
+                $_SESSION["userId"] = $mysqli->insert_id;
                 $_SESSION["username"] = $username; 
-                
+                header("Location: ./Home.php");
+                die();
             }else{
-                $username_error = "Username already exists, try another<br>";
+                $username_error = "Username already exists, try another";
             }
         }
     }
     ?>
 
-    <?php
-        require 'header.php';
-    ?>
     <div class="container">
         <h1>Sign up</h1>
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            Username: <input type="text" name="userName"><br>
-            <?php echo (!empty($username_error)) ? $username_error : '';?>
-            Password: <input type="text" name="userPass"><br>
-            <?php echo (!empty($password_error)) ? $password_error : '';?>
+            Username: <input type="text" name="userName"> <?php echo (!empty($username_error)) ? $username_error : '';?> <br>
+            Password: <input type="text" name="userPass"> <?php echo (!empty($password_error)) ? $password_error : '';?> <br>
             Confirm Password: <input type="text" name="userPass2"><br>
             <input type="submit">
         </form>
