@@ -33,8 +33,12 @@
                 $stmt->bind_param("sss", $param_username, $param_password, $param_image);
                 $param_username = $username;
                 $param_password = hash('sha256', $password);
-                $param_image = file_get_contents($_FILES['userImg']['tmp_name']);
-
+                if (is_uploaded_file($_FILES['userImg']['tmp_name'])) {
+                    $param_image = file_get_contents($_FILES['userImg']['tmp_name']);
+                } else {
+                    $param_image = null;
+                }
+                
                 $stmt->execute();
                 $stmt->close();
 
