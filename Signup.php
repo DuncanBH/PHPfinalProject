@@ -32,7 +32,7 @@
                 $stmt = $mysqli->prepare($sql);
                 $stmt->bind_param("ss", $param_username, $param_password);
                 $param_username = $username;
-                $param_password = $password;
+                $param_password = hash('sha256', $password);
 
                 $stmt->execute();
                 $stmt->close();

@@ -19,7 +19,7 @@
             $teststmt = $mysqli->prepare($testsql);
             $teststmt->bind_param("ss", $param_username, $param_password);
             $param_username = $username;
-            $param_password = $password;
+            $param_password = hash('sha256', $password);
 
             $teststmt->execute();
 
