@@ -1,9 +1,6 @@
 <html>
 
 <body>
-    
-
-
     <?php
     require_once "config.php";
     $username_error = null;
@@ -48,20 +45,21 @@
     }
     ?>
 
-<?php
-    require 'header.php';
-    
+    <?php
+        require 'header.php';
     ?>
-    <h1>Sign up</h1>
+    <div class="container">
+        <h1>Sign up</h1>
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        Username: <input type="text" name="userName"><br>
-        <?php echo (!empty($username_error)) ? $username_error : '';?>
-        Password: <input type="text" name="userPass"><br>
-        <?php echo (!empty($password_error)) ? $password_error : '';?>
-        Confirm Password: <input type="text" name="userPass2"><br>
-        <input type="submit">
-    </form>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            Username: <input type="text" name="userName"><br>
+            <?php echo (!empty($username_error)) ? $username_error : '';?>
+            Password: <input type="text" name="userPass"><br>
+            <?php echo (!empty($password_error)) ? $password_error : '';?>
+            Confirm Password: <input type="text" name="userPass2"><br>
+            <input type="submit">
+        </form>
+    </div>
 </body>
 
 </html>

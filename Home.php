@@ -3,7 +3,6 @@
     <?php require 'header.php'; 
     require_once "config.php";
     ?>
-    <h1>Welcome to the home page</h1>
 
     <?php
         class ChatroomData {
@@ -30,8 +29,16 @@
             array_push($chatrooms, $chatroom);
         }
     ?>
-
-    Available chatrooms:
+    <div class="container"> 
+        <div class="row">
+            <h1 class="text-center">Welcome to the home page</h1>
+            </div>
+        <div class="row">
+            <h2 class="text-center fw-light">Available chatrooms:
+            </h2>
+        </div>
+    </div>
+    
     <div class="container">
         <?php foreach ($chatrooms as $chatroom ) : ?>
             <div class="row">
