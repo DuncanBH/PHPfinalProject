@@ -37,6 +37,8 @@
         <div class="row">
             <h2 class="text-center fw-light"><?= $chatroom->desc ?></h2>
         </div>
+        <?php require "Messaging.php" ?>
     </div>
+    
 </body>
 </html>

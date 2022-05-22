@@ -38,10 +38,10 @@
             </h2>
         </div>
     </div>
-    
+
     <div class="container">
         <?php foreach ($chatrooms as $chatroom ) : ?>
-            <div class="row">
+            <div class="row my-2">
                 <img class="col-2" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="blank user">
                 <div class="col-10 container-fluid"> 
                     <div class="row">
