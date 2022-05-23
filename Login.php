@@ -1,6 +1,6 @@
 <html>
 <body>
-<?php @session_start(); ?>
+<?php require 'header.php'?>
 <?php
     require_once "config.php";
     $username_error = null;
@@ -30,6 +30,8 @@
             if ($exists != null) {
                 $_SESSION["userId"] = $mysqli->insert_id;
                 $_SESSION["username"] = $username; 
+                $_SESSION['userImg'] = $exists["user_image"];
+
                 header("Location: ./Home.php");
                 die();
                 
@@ -40,7 +42,6 @@
     }
     ?>
 
-    <?php require 'header.php'?>
     <div class="container">
         <h1>Log in</h1>
 

@@ -15,6 +15,14 @@
     if (isset($_SESSION["username"])) {
         ?>
         <a href="./NewChat.php" class="btn btn-success col-2 m-1 my-auto w-auto">Create new chatroom?</a>
+        
+        <!--check if image is null, show image else show placeholder-->
+        <?php if (isset($_SESSION["userImg"])) {?>
+        <img style="max-width: 5%" src="data:image/jpeg;base64,<?= base64_encode($_SESSION["userImg"])?>"/>
+        <?php } else { ?>
+        <img style="max-width: 5%" class="col-2" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="blank user">
+        <?php } ?>
+
         <div class="col-3 my-auto w-auto">
             Welcome back, <?= $_SESSION["username"]?> <br>
             <a href="./Home.php?logout=true">Sign out?</a>
