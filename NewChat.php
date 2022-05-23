@@ -1,9 +1,7 @@
 <html>
 <body>
-    <?php require 'header.php';
+<?php require 'header.php';
         require_once "config.php";
-    ?>
-    <?php
     $roomName_error = null;
     $roomDesc_error = null;
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -40,8 +38,12 @@
                 $stmt->close();
 
                 $id = $mysqli->insert_id;
-                header("Location: ./Chatroom.php?roomId=" . $id);
-                die();
+                ?>
+                <!--Redirect in JS-->
+                <script type="text/javascript">
+                window.location.href = './Chatroom.php?roomId=<?=$id?>';
+                </script>
+                <?php
             }else{
                 $roomName_error = "roomName already exists, try another";
             }

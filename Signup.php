@@ -46,9 +46,12 @@
                 $_SESSION["userId"] = $mysqli->insert_id;
                 $_SESSION["username"] = $username; 
                 $_SESSION['userImg'] = $param_image;
-
-                header("Location: ./Home.php");
-                die();
+                ?>
+                <!--Redirect in JS-->
+                <script type="text/javascript">
+                window.location.href = './Home.php';
+                </script>
+                <?php
             }else{
                 $username_error = "Username already exists, try another";
             }

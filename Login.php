@@ -32,9 +32,12 @@
                 $_SESSION["username"] = $username; 
                 $_SESSION['userImg'] = $exists["user_image"];
 
-                header("Location: ./Home.php");
-                die();
-                
+                ?>
+                <!--Redirect in JS-->
+                <script type="text/javascript">
+                window.location.href = './Home.php';
+                </script>
+                <?php
             } else {
                 $username_error = "Incorrect information, try again";
             }
