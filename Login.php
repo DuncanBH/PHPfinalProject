@@ -28,7 +28,7 @@
             
             $teststmt->close();
             if ($exists != null) {
-                $_SESSION["userId"] = $mysqli->insert_id;
+                $_SESSION["userId"] = $exists["user_id"];
                 $_SESSION["username"] = $username; 
                 $_SESSION['userImg'] = $exists["user_image"];
 

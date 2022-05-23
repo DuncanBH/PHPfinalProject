@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $id = $_GET["roomId"];
 
-        $sql = "INSERT INTO chatroomdb.messages (chatroom_id, user_id,message_text) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO chatroomdb.messages (chatroom_id, user_id, message_text) VALUES (?, ?, ?)";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("iis", $param_chatroom_id, $param_user_id, $param_message_text);
         
